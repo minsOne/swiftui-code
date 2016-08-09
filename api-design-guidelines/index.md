@@ -71,8 +71,6 @@ without too much boilerplate.  We use checkboxes instead of
   {% assign ref = 'https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/' %}
   {% capture SymbolDoc %}{{ref}}SymbolDocumentation.html#//apple_ref/doc/uid/TP40016497-CH51-{% endcapture %}
 
-  * **Use Swift's [dialect of Markdown]({{ref}}).**
-
   * **Swift의 [Markdown 방언]({{ref}})을 사용합니다.**
 
   * 선언되는 개체를 설명하는 **요약으로 시작**합니다.
@@ -88,8 +86,6 @@ without too much boilerplate.  We use checkboxes instead of
 
     * **요약에 초점을 맞춥니다**; 요약은 매우 중요한 부분입니다.
       많은 우수한 문서 주석은 훌륭한 요약보다 더 나은 구성은 없습니다.
-    * **Use a single sentence fragment** if possible, ending with a
-      period.  Do not use a complete sentence.
 
     * 가능하면 **한 개의 절을 사용하고**, 마침표로 끝냅니다.
       완전한 문장을 사용하지 마세요.
