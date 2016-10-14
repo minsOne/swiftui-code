@@ -29,8 +29,8 @@ without too much boilerplate.  We use checkboxes instead of
 {% assign enddetail = '</div>' %}
 
 <div class="info screenonly" markdown="1">
-빠른 참조로 쉽게 사용하도록, 많은 가이드 라인의 세부 사항은 개별로 확장될 수 있습니다.
-이 페이지를 출력할 때 세부 사항은 숨겨지지 않습니다.
+빠른 참조 기능을 지원하기 위해, 가이드 라인의 세부 사항 대부분은 자세히 보기 기능을 통해 제공됩니다.
+이 페이지를 출력할 경우, 모든 세부 사항이 함께 제공됩니다.
 <input type="button" id="toggle" value="Expand all details now" onClick="show_or_hide_all()" />
 </div>
 
@@ -42,28 +42,27 @@ without too much boilerplate.  We use checkboxes instead of
 
 ## 기본 개념
 
-* **사용 시점에서 명확성**은 가장 중요한 목표입니다.
-  메소드와 속성과 같은 개체는 한 번만 선언되지만, 반복적으로 사용됩니다.
-  API 설계는 사용이 명확하고 간결하게 합니다.
-  설계를 평가할 때, 선언부를 읽는 것으로는 충분하지 않습니다;
-  문맥에서 명확하게 보이는지 확인하기 위해 사용 사례를 항상 검토합니다.
+* 가장 중요한 목표는 **사용 시점에서의 명료함**입니다.
+  메소드, 속성과 같은 개체들(Entities)은 한 번만 선언되지만, 반복적으로 사용됩니다.
+  API는 이러한 개체들을 이해하기 쉽고 간결하게 만드는데 중점을 두고 작성해야 합니다.
+  API 설계에 대한 평가는 선언부를 읽는 것만으로는 충분하지 않습니다.
+  사용사례에서 문맥상 명확하게 이해되는지를 기준으로 평가해야 합니다.
   {:#clarity-at-the-point-of-use}
 
-* **명확성은 간결성보다 더 중요합니다.**
-  Swift 코드는 간결하게 될 수 있지만,
-  가장 적은 문자로 가능한 가장 작은 코드를 작동시키는 것이 목표가 아닙니다.
-  Swift 코드에서 나오는 간결성은
-  보일러 플레이트를 자연스럽게 줄이는
-  강 타입 시스템의 사이드 이펙트이고 특징입니다.
+* **명료함은 간결성보다 더 중요합니다.**
+  Swift 코드를 간결하게 작성할 수 있지만,
+  문자들 몇 개만 사용해서 가능한 가장 적은 양의 코드를 작성하는 것이 목표가 아닙니다.
+  Swift 코드의 간결함은 강력한 type 시스템과 boilerplate 코드를 줄여주는 기능들이 제공하는
+  부수적인 효과입니다.
   {:#clarity-over-brevity}
 
-* 모든 선언을 위해 **문서 주석을 작성합니다.**
-  문서 작성으로 얻은 통찰력은 설계에 지대한 영향을 미칠 수 있습니다.
-  내버려두지 마세요.
+* 모든 선언문에 **주석을 작성하세요.**
+  API 를 설명하는 주석 문서를 작성하면서 얻은 통찰력은 API 설계에 지대한 영향을 미칠 수 있습니다.
+  다음으로 미루지 말고 꼭 주석을 달아주세요.
   {:#write-doc-comment}
 
   <div class="warning" markdown="1">
-  간단한 용어로 API 기능을 설명하는 데 문제가 있으면 **잘못된 API 설계를 했을 수 있습니다.**
+  간단한 용어로 API 기능을 설명하지 못한다면, **당신의 API 설계는 문제가 있을 가능성이 높습니다.**
   </div>
   
   {{expand}}
@@ -71,87 +70,84 @@ without too much boilerplate.  We use checkboxes instead of
   {% assign ref = 'https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/' %}
   {% capture SymbolDoc %}{{ref}}SymbolDocumentation.html#//apple_ref/doc/uid/TP40016497-CH51-{% endcapture %}
 
-  * **Use Swift's [dialect of Markdown]({{ref}}).**
+  * **Swift 에서 지원하는 [Markdown 언어]({{ref}})를 사용하세요.**
 
-  * **Swift의 [Markdown 방언]({{ref}})을 사용합니다.**
-
-  * 선언되는 개체를 설명하는 **요약으로 시작**합니다.
-    가끔은 API가 선언과 요약으로 완전히 이해될 수 있습니다.
+  * 선언된 개체(entity)를 설명하는 **요약으로 시작**하세요.
+    API는 선언과 요약을 통해 완전히 이해되는 경우가 많습니다.
 
     ~~~ swift
-    /// **역순으로 같은 요소를 포함하는 `self`의 "view"를 반환.**
+    /// **같은 요소를 포함하는 `self`의 "view"를 역순으로 반환.**
     func reversed() -> ReverseCollection<Self>
     ~~~
 
     {{expand}}
     {{detail}}
 
-    * **요약에 초점을 맞춥니다**; 요약은 매우 중요한 부분입니다.
-      많은 우수한 문서 주석은 훌륭한 요약보다 더 나은 구성은 없습니다.
-    * **Use a single sentence fragment** if possible, ending with a
-      period.  Do not use a complete sentence.
+    * **요약에 초점을 맞추세요**. 요약은 매우 중요한 부분입니다.
+      많은 우수한 코드 주석은 훌륭한 요약문을 가지고 있습니다.
 
-    * 가능하면 **한 개의 절을 사용하고**, 마침표로 끝냅니다.
+    * 가능하면 **한 개의 절을 사용하고**, 마침표로 끝내세요.
       완전한 문장을 사용하지 마세요.
 
-    * **함수 또는 메소드가 *하는* 것과 *반환하는* 것을 설명하고,**
-      null 효과와 `Void` 반환은 생략합니다:
+    * **함수 또는 메소드가 *어떤 일을 하는지*, *어떤 것을 반환하는지* 설명하고,**
+      null 효과와 `Void` 반환은 설명을 생략하세요:
 
       ~~~ swift
-      /// `self` 시작에 `newHead`를 **삽입**.
+      /// `self` 시작부분에 `newHead`를 **삽입**.
       mutating func prepend(newHead: Int)
 
-      /// `head` 뒤에 오는 `self`의 요소를 포함하는 `List`를 **반환**.
+      /// `self`의 요소를 동반하는 `head` 가 포함된 `List` 를 **반환**.
       func prepending(head: Element) -> List
 
-      /// 비어있지 않다면 `self`의 첫 번째 요소를 **제거 및 반환하고**, 비어있다면 `nil`을 반환.
+      /// 비어있지 않다면 `self`의 첫 번째 요소를 **제거 및 반환하고**; 비어있다면 `nil`을 반환.
       mutating func popFirst() -> Element?
       ~~~
 
-      주의 : 위에 `popFirst`과 같이 드문 경우, 요약을 세미콜론으로 나뉜 여러 절로 구성합니다.
+      주의 : 자주 사용되지는 않지만, `popFirst` 의 경우처럼 세미콜론을 사용해 여러 절로 이루어진 요약문을
+      작성할 수도 있습니다.
 
-    * **subscript *접근*을 설명합니다**:
+    * **subscript 가 어떤 것에 *접근*하는지 설명합니다**:
 
       ~~~ swift
-      /// `index` 번째 요소를 **접근**.
+      /// `index` 번째 요소에 **접근**.
       subscript(index: Int) -> Element { get set }
       ~~~
 
-    * **이니셜라이저가 *생성*하는 것을 설명합니다**:
+    * **이니셜라이저가 무엇을 *생성*하는지 설명합니다**:
 
       ~~~ swift
-      /// `x`의 `n`번 반복을 포함하는 인스턴스를 **생성**.
+      /// `x`를 `n`번 반복하는 인스턴스를 **생성**.
       init(count n: Int, repeatedElement x: Element)
       ~~~
 
-    * 다른 모든 선언에 대해 **선언된 개체*가* 무엇인지 설명합니다**.
+    * 그 외의 경우, **선언된 개체*가* 무엇인지 설명합니다**.
 
       ~~~ swift
-      /// 어떤 위치에서든 똑같이 효율적으로 삽입/제거를 지원하는 **컬렉션**.
+      /// 어떤 위치에서든 똑같이 효율적으로 삽입/제거할 수 있는 **컬렉션**.
       struct List {
 
-        /// `self`의 **시작 요소**, 또는 self가 비어있다면 `nil`
+        /// `self`의 **첫 번째 요소**, 또는 self가 비어있다면 `nil`
         var first: Element?
         ...
       ~~~
 
     {{enddetail}}
 
-  * 선택 사항으로, 여러 절과 글 머리 기호로 계속 잇습니다.
-    빈 줄로 절을 나누고 완전한 문장을 사용합니다.
+  * 경우에 따라, 여러 절과 글 머리 기호를 사용할 수 있습니다.
+    공백 줄로 절을 나누고 완전한 문장을 사용합니다.
 
     ~~~ swift
     /// 표준 출력에 `items` 각 요소의 텍스트 표현을 작성합니다. <span class="graphic">←</span><span class="commentary"> 요약</span>
     ///                                             <span class="graphic">←</span><span class="commentary"> 빈 줄</span>
-    /// 각 요소인 `x` 텍스트 표현은 표현식 `String(x)`으로   <span class="graphic">←</span><span class="commentary"> 추가 논의</span>
-    /// 생성되었습니다.
+    /// 각 요소인 `x`의 텍스트 표현은 `String(x)` 표현식으로   <span class="graphic">←</span><span class="commentary"> 추가 설명</span>
+    /// 제공됩니다.
     ///
-    /// - **매개변수 구분자**: 요소 사이에 텍스트가 출력됩니다.      <span class="graphic">⎫</span>
-    /// - **매개변수 종결자**: 끝에 텍스트가 출력됩니다.           <span class="graphic">⎬</span><span class="commentary"> <a href="{{SymbolDoc}}SW14">매개변수 부분</a></span>
+    /// - **매개변수 seperator**: 요소 사이에 출력되는 텍스트      <span class="graphic">⎫</span>
+    /// - **매개변수 terminator**: 끝부분에 출력되는 텍스트           <span class="graphic">⎬</span><span class="commentary"> <a href="{{SymbolDoc}}SW14">매개변수 부분</a></span>
     ///                                              <span class="graphic">⎭</span>
     /// - **주의**: 끝부분에 줄 바꿈을 출력하지 않으려면           <span class="graphic">⎫</span>
-    ///   `terminator: ""`를 전달합니다.                <span class="graphic">⎟</span>
-    ///                                              <span class="graphic">⎬</span><span class="commentary"> <a href="{{SymbolDoc}}SW13">기호 커맨드</a></span>
+    ///   `terminator: ""`를 전달하세요.                <span class="graphic">⎟</span>
+    ///                                              <span class="graphic">⎬</span><span class="commentary"> <a href="{{SymbolDoc}}SW13">기타 참고사항</a></span>
     /// - **참조**: `CustomDebugStringConvertible`,       <span class="graphic">⎟</span>
     ///   `CustomStringConvertible`, `debugPrint`.   <span class="graphic">⎭</span>
     public func print<Target: OutputStreamType>(
@@ -161,12 +157,12 @@ without too much boilerplate.  We use checkboxes instead of
     {{expand}}
     {{detail}}
 
-    * 적절할 때, 요약 범위를 넘어서는 정보를 추가하도록
-      **공인된 [기호 문서 마크업]({{SymbolDoc}}SW1) 요소를 사용합니다.**
+    * 요약문 외에 추가 정보를 제공할 때에는 많은 사람들이 이해할 수 있게
+      **[symbol 문서 마크업]({{SymbolDoc}}SW1) 요소들을 사용하세요.**
 
-    * **공인된 글 머리 기호와 [기호 커맨드 구문]({{SymbolDoc}}SW13)을
-      알고 사용합니다.** Xcode와 같이 인기 있는 개발 툴은
-      다음 키워드로 시작하는 글 머리 기호를 특별하게 취급합니다:
+    * **[symbol 커맨드 구문]({{SymbolDoc}}SW13) 을 익히고 활용하세요.** 
+      Xcode와 같이 인기 있는 개발 도구는  
+      다음 키워드로 시작하는 글 머리 기호(예: - Note)를 특별하게 취급합니다:
 
       | [Attention]({{ref}}Attention.html) | [Author]({{ref}}Author.html) | [Authors]({{ref}}Authors.html) | [Bug]({{ref}}Bug.html) |
       | [Complexity]({{ref}}Complexity.html) | [Copyright]({{ref}}Copyright.html) | [Date]({{ref}}Date.html) | [Experiment]({{ref}}Experiment.html) |
