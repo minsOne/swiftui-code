@@ -56,8 +56,8 @@ without too much boilerplate.  We use checkboxes instead of
   부수적인 효과입니다.
   {:#clarity-over-brevity}
 
-* 모든 선언문에 **주석을 작성하세요.**
-  API 를 설명하는 주석 문서를 작성하면서 얻은 통찰력은 API 설계에 지대한 영향을 미칠 수 있습니다.
+* 모든 선언문에 **문서화용 주석(documentation comments)을 작성하세요.**
+  API 문서를 작성하면서 얻은 통찰력은 API 설계에 지대한 영향을 미칠 수 있습니다.
   다음으로 미루지 말고 꼭 주석을 달아주세요.
   {:#write-doc-comment}
 
