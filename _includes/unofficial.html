@@ -1,0 +1,14 @@
+{% assign official_url = page.official_url %}
+{% if official_url == "" %}
+   {% capture official_url %}{{page.official_site}}{{site.baseurl}}{{page.url}}{% endcapture %}
+{% endif %}
+{% assign official_domain = official_url | replace_first:'https://','' | replace_first:'http://','' | split:'/' | first %}
+{% assign site_domain = site.url | split:'/' | last %}
+{% unless site_domain == official_domain %}
+
+<div class="warning" markdown="1">
+  이것은 Swift 내부 문서의 비공식 사본이며, 수정되었을 수도 있습니다.
+  이 페이지의 공식 버전은 <a href="{{official_url}}">여기</a>에서 찾을 수 있습니다.
+</div>
+
+{% endunless %}
