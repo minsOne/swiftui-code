@@ -6,41 +6,58 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Swift Internals
-email: swift-dev@lists.swift.org
-description: > # > means to ignore newlines until the next unindented line
-  Official guidelines for Swift API design.
-timezone: America/Los_Angeles
-baseurl: "/swiftui-code"
-url: "http://apple.github.io"
+title: Webjeda cards
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  Webjeda Cards is a Bootstrap based jekyll theme for portfolio, photography or any kind of blog.
+  
+  
+baseurl: "/swiftui-code" # the subpath of your site, e.g. /blog
+url: "https://minsone.github.io" # the base hostname & protocol for your site
 
-exclude: [config.ru, Gemfile, Gemfile.lock, Procfile, vendor, README.md]
+#sidebar
+default-image: webjeda-logo-big.jpg # If there is no featured image in a post then this image will be showed. Also on all pages this image will be showed. Use a 500x250 image.
 
-# twitter_username: SwiftLang
-# github_username:  jekyll
+#footer
+
+built-by: webjeda
+
+copyright:
+   name: webjeda
+   link: 'http://blog.webjeda.com'
 
 # Build settings
 markdown: kramdown
+permalink: /:title/
+paginate: 6
+paginate_path: /page:num/
 
-kramdown:
-    syntax_highlighter: rouge
+# Tracker
+analytics: UA-83979019-1
 
+# Comments
+disqus: yes
+disqus-shortname: webjeda-demo
+
+#social
+facebook: http://facebook.com/
+quora: http://quora.com/
+twitter: http://twitter.com/
+github: http://github.com/
+email: your@email.com
+
+#facebook like box
+fb-like-box: yes
+fb-app-id: 549480635219583
+fb-page-url: https://www.facebook.com/webjeda/
+fb-page-title: webjeda
+
+# Sass style
 sass:
-    style: compressed
-    sass_dir: _sass
+  style: compressed
 
-gems:
-  - jekyll-redirect-from
+# Ruby Gems
+plugins: 
+  - jekyll-paginate
+  - jekyll-seo-tag
 
-whitelist:
-  - jekyll-redirect-from
-
-defaults:
-  -
-    scope:
-      path: ""
-      type: pages
-    values:
-      official_site: http://apple.github.io
-      official_url: ""
-      include_in_navigation: true
