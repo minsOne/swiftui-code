@@ -1,0 +1,5 @@
+baseURL = "https://minsone.github.io/swiftui-code"
+languageCode = "ko-kr"
+title = "My New Hugo Site"
+theme = "ananke"
+
