@@ -6,8 +6,8 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Webjeda cards
-email: your-email@domain.com
+title: SwiftUI
+email: jungminahn.minsone@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Webjeda Cards is a Bootstrap based jekyll theme for portfolio, photography or any kind of blog.
   
@@ -23,34 +23,34 @@ default-image: webjeda-logo-big.jpg # If there is no featured image in a post th
 built-by: webjeda
 
 copyright:
-   name: webjeda
-   link: 'http://blog.webjeda.com'
+   name : 안정민
+   link: 'http://minsOne.github.io'
 
 # Build settings
 markdown: kramdown
 permalink: /:title/
-paginate: 6
-paginate_path: /page:num/
+# paginate: 6
+# paginate_path: /page:num/
 
 # Tracker
-analytics: UA-83979019-1
+analytics: UA-40784576-3
 
 # Comments
 disqus: yes
-disqus-shortname: webjeda-demo
+disqus-shortname: minsone
 
 #social
-facebook: http://facebook.com/
-quora: http://quora.com/
-twitter: http://twitter.com/
-github: http://github.com/
-email: your@email.com
+# facebook: http://facebook.com/
+# quora: http://quora.com/
+twitter: http://twitter.com/cancoffee7
+github: http://github.com/minsone
+email: jungminahn.minsone@gmail.com
 
 #facebook like box
-fb-like-box: yes
-fb-app-id: 549480635219583
-fb-page-url: https://www.facebook.com/webjeda/
-fb-page-title: webjeda
+# fb-like-box: yes
+# fb-app-id: 549480635219583
+# fb-page-url: https://www.facebook.com/webjeda/
+# fb-page-title: webjeda
 
 # Sass style
 sass:
