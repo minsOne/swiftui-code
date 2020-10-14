@@ -20,8 +20,6 @@ default-image: webjeda-logo-big.jpg # If there is no featured image in a post th
 
 #footer
 
-built-by: webjeda
-
 copyright:
    name : 안정민
    link: 'http://minsOne.github.io'
