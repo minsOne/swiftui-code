@@ -1,7 +1,9 @@
 <div class="col-md-4 mt20">
-  {% if page.img %}
+  {% if page.video %}
   <div class="post-img">
-    <img width="600" src="{{site.baseurl}}/images/{{page.img}}" alt="{{page.title}}">
+	  <video width="375" controls loop autoplay>
+	  	<source src="{{site.baseurl}}/video/{{page.video}}" type="video/mp4">
+	  </video>
   </div>
   {% endif %}
 </div>

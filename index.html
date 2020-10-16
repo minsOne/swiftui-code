@@ -13,9 +13,14 @@ layout: default
             <img height="220" src="{{site.baseurl}}/images/{{post.img}}" alt="{{post.title}}">
             {% endif %}
             <div class="card-body">
+              {% if post.video_thumbnail %}
+              <video height="220" loop autoplay muted>
+                <source src="{{site.baseurl}}/video/{{post.video_thumbnail}}" type="video/mp4">
+              </video>
+              {% endif %}
               <h3 class="panel-title font-weight-bold">{{ post.title | truncate: 25 }}</h3>
               <p class="p-0 my-1 mx-0"><span class="post-meta"><small>{{ post.date | date: "%b %-d, %Y" }}</small></span></p>
-               <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 150 }}</p>
+
             </div>
           </div>
         </div>
